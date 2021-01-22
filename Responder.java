@@ -31,8 +31,8 @@ public class Responder
      */
     public String generateResponse()
     {
-        int tamaño = respuestas.size();
-        int respuesta = aleatorio.nextInt(tamaño);
+        int tamanyo = respuestas.size();
+        int respuesta = aleatorio.nextInt(tamanyo);
         return respuestas.get(respuesta);
     }
 }
