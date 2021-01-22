@@ -10,19 +10,19 @@ import java.util.ArrayList;
 public class Responder
 {
     Random aleatorio;
-    ArrayList<String> array;
+    ArrayList<String> respuestas;
     /**
      * Construct a Responder - nothing to do
      */
     public Responder()
     {
         aleatorio = new Random();
-        array = new ArrayList<>();
-        array.add("Muy interesante, cuentame más.");
-        array.add("Ya veo cual es el problema.");
-        array.add("Necesito hablarlo con mi jefe.");
-        array.add("Le voy a pasar con mis superiores.");
-        array.add("Dejame pensar cual podría ser el problema.");
+        respuestas = new ArrayList<>();
+        respuestas.add("Muy interesante, cuentame más.");
+        respuestas.add("Ya veo cual es el problema.");
+        respuestas.add("Necesito hablarlo con mi jefe.");
+        respuestas.add("Le voy a pasar con mis superiores.");
+        respuestas.add("Dejame pensar cual podría ser el problema.");
     }
 
     /**
@@ -31,7 +31,8 @@ public class Responder
      */
     public String generateResponse()
     {
-        int respuesta = aleatorio.nextInt(5);
-        return array.get(respuesta);
+        int tamaño = respuestas.size();
+        int respuesta = aleatorio.nextInt(tamaño);
+        return respuestas.get(respuesta);
     }
 }
