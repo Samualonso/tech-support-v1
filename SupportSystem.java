@@ -1,3 +1,4 @@
+import java.util.HashSet;
 /**
  * This class implements a technical support system. It is the top
  * level class in this project. The support system communicates via
@@ -15,7 +16,6 @@ public class SupportSystem
 {
     private InputReader reader;
     private Responder responder;
-    
     /**
      * Creates a technical support system.
      */
@@ -37,8 +37,8 @@ public class SupportSystem
         printWelcome();
 
         while(!finished) {
-            String input = reader.getInput();
-            if(input.toLowerCase().trim().equals("bye")) {
+            HashSet input = reader.getInput();
+            if(input.contains("bye")) {
                 finished = true;
             }
             else {
