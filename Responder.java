@@ -17,17 +17,27 @@ public class Responder
     //Almacena objetos de tipo String
     ArrayList<String> respuestas;
     //Almacena respuestas a ciertas preguntas
-    HashMap<String, String> respuestaConcreta;
+    HashMap<HashSet<String>, String> respuestaConcreta;
     /**
      * Construct a Responder - nothing to do
      */
     public Responder()
     {
+        HashSet<String> conjunto1 = new HashSet<>();
+        conjunto1.add("problema");
+        conjunto1.add("windows");
+        conjunto1.add("crash");
+        HashSet<String> conjunto2 = new HashSet<>();
+        conjunto2.add("problema");
+        HashSet<String> conjunto3 = new HashSet<>();
+        conjunto3.add("windows");
+        HashSet<String> conjunto4 = new HashSet<>();
+        conjunto4.add("crash");
         respuestaConcreta = new HashMap<>();
-        respuestaConcreta.put("windows", "El problema no es de nuestra aplicación sino de windows");
-        respuestaConcreta.put("ubuntu", "El problema no es de nuestra aplicación sino de ubuntu");
-        respuestaConcreta.put("mac", "El problema no es de nuestra aplicación sino de mac");
-        respuestaConcreta.put("android", "El problema no es de nuestra aplicación sino de android");
+        respuestaConcreta.put(conjunto1, "Podría tratarse de un crasheo temporal.");
+        respuestaConcreta.put(conjunto2, "¿Que problema ocurre?");
+        respuestaConcreta.put(conjunto3, "¿Qué codigo de error aparece?");
+        respuestaConcreta.put(conjunto4, "¿En que sistema operativo ocurrió el crasheo?");
         aleatorio = new Random();
         respuestas = new ArrayList<>();
         respuestas.add("Muy interesante, cuentame más.");
@@ -44,11 +54,8 @@ public class Responder
     public String generateResponse(HashSet<String> userInput)
     {
         String respuesta = null;
-        for(String elemento : userInput){
-            if(respuesta == null){
-                respuesta = respuestaConcreta.get(elemento);
-            }
-        }
+        
+        respuesta  = respuestaConcreta.get(userInput);
         
         if(respuesta == null){
             respuesta = respuestas.get(aleatorio.nextInt(respuestas.size()));
