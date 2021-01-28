@@ -37,7 +37,7 @@ public class SupportSystem
         printWelcome();
 
         while(!finished) {
-            HashSet input = reader.getInput();
+            HashSet<String> input = reader.getInput();
             if(input.contains("bye")) {
                 finished = true;
             }
