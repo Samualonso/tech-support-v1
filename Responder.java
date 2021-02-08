@@ -52,22 +52,22 @@ public class Responder
     public String generateResponse(HashSet<String> userInput)
     {
         String respuesta = null;
-        int contador1 = 0;
-        int contador2 = 0;
+        int palabrasClave = 0;
+        int palabrasClaveAnteriores = 0;
         Iterator<HashSet<String>> iterador = respuestaConcreta.keySet().iterator();
         
         while(iterador.hasNext()){
+            palabrasClave = 0;
             HashSet<String> respuestaHashSet = iterador.next();
             for(String key : respuestaHashSet){
                 if(userInput.contains(key)){
-                    contador1++;
+                    palabrasClave++;
                 }
             }
-            if(contador1 > 0 && contador2 <= contador1){
+            if(palabrasClave > 0 && palabrasClaveAnteriores <= palabrasClave){
                 respuesta = respuestaConcreta.get(respuestaHashSet);
-                contador2 = contador1;
+                palabrasClaveAnteriores = palabrasClave;
             }
-            contador1 = 0;
         }
         
         if(respuesta == null){
