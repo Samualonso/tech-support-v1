@@ -20,11 +20,13 @@ public class Responder
     HashMap<HashSet<String>, String> respuestaConcreta;
     private HashSet<String> conjunto1;
     private HashSet<String> conjunto2;
+    private String ultimaRespuesta;
     /**
      * Construct a Responder - nothing to do
      */
     public Responder()
     {
+        ultimaRespuesta = " ";
         conjunto1 = new HashSet<>();
         conjunto1.add("linux");
         conjunto1.add("crash");
@@ -70,9 +72,14 @@ public class Responder
             }
         }
         
+        if(ultimaRespuesta.equals(respuesta)){
+            respuesta = respuestas.get(aleatorio.nextInt(respuestas.size()));
+        }
+        
         if(respuesta == null){
             respuesta = respuestas.get(aleatorio.nextInt(respuestas.size()));
         }
+        ultimaRespuesta = respuesta;
         return respuesta;
     }
 }
