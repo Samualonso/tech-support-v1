@@ -18,26 +18,24 @@ public class Responder
     ArrayList<String> respuestas;
     //Almacena respuestas a ciertas preguntas
     HashMap<HashSet<String>, String> respuestaConcreta;
+    private HashSet<String> conjunto1;
+    private HashSet<String> conjunto2;
     /**
      * Construct a Responder - nothing to do
      */
     public Responder()
     {
-        HashSet<String> conjunto1 = new HashSet<>();
-        conjunto1.add("problema");
-        conjunto1.add("windows");
+        conjunto1 = new HashSet<>();
+        conjunto1.add("linux");
         conjunto1.add("crash");
-        HashSet<String> conjunto2 = new HashSet<>();
-        conjunto2.add("problema");
-        HashSet<String> conjunto3 = new HashSet<>();
-        conjunto3.add("windows");
-        HashSet<String> conjunto4 = new HashSet<>();
-        conjunto4.add("crash");
+        conjunto1.add("problem");
+        conjunto2 = new HashSet<>();
+        conjunto2.add("windows");
+        conjunto2.add("corrupt");
+        conjunto2.add("problem");
         respuestaConcreta = new HashMap<>();
         respuestaConcreta.put(conjunto1, "Podría tratarse de un crasheo temporal.");
-        respuestaConcreta.put(conjunto2, "¿Que problema ocurre?");
-        respuestaConcreta.put(conjunto3, "¿Qué codigo de error aparece?");
-        respuestaConcreta.put(conjunto4, "¿En que sistema operativo ocurrió el crasheo?");
+        respuestaConcreta.put(conjunto2, "El problema puede ser un virus.");
         aleatorio = new Random();
         respuestas = new ArrayList<>();
         respuestas.add("Muy interesante, cuentame más.");
@@ -54,8 +52,23 @@ public class Responder
     public String generateResponse(HashSet<String> userInput)
     {
         String respuesta = null;
+        int contador1 = 0;
+        int contador2 = 0;
+        Iterator<HashSet<String>> iterador = respuestaConcreta.keySet().iterator();
         
-        respuesta  = respuestaConcreta.get(userInput);
+        while(iterador.hasNext()){
+            HashSet<String> respuestaHashSet = iterador.next();
+            for(String key : respuestaHashSet){
+                if(userInput.contains(key)){
+                    contador1++;
+                }
+            }
+            if(contador1 > 0 && contador2 <= contador1){
+                respuesta = respuestaConcreta.get(respuestaHashSet);
+                contador2 = contador1;
+            }
+            contador1 = 0;
+        }
         
         if(respuesta == null){
             respuesta = respuestas.get(aleatorio.nextInt(respuestas.size()));
