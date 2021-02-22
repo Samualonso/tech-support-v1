@@ -24,6 +24,12 @@ public class SupportSystem
         reader = new InputReader();
         responder = new Responder();
     }
+    
+    public static void main(String[] args)
+    {
+        SupportSystem soporte1 = new SupportSystem();
+        soporte1.start();
+    }
 
     /**
      * Start the technical support system. This will print a welcome
